@@ -1,0 +1,13 @@
+.profile {
+    width: 1180px;
+    background-color: seagreen;
+}
+
+.profile img {
+    max-width: 800px;
+}
+
+.item {
+    text-decoration: none;
+    color: red;
+}

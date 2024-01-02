@@ -1,0 +1,22 @@
+.navbar {
+    width: 250px;
+    background-color: cadetblue;
+}
+
+.item__block {
+    margin: 20px;
+}
+
+.item {
+    color: white;
+    text-decoration: none;
+}
+
+.item.active {
+    background-color: red;
+    color: gold;
+    text-decoration: none;
+}
+
+
+

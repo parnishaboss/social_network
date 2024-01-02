@@ -1,33 +1,11 @@
-.Header {
-  margin-bottom: 20px;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  /*text-align: center;*/
-  background-color: red;
-}
-.Sidebar {
-
-  height: 90vh;
-  width: 250px;
-  background-color: cadetblue;
-}
-.Content {
-  width: 1180px;
-  background-color: seagreen;
-}
-.Content img {
-  max-width: 800px;
-}
-
 .container {
-  margin: 0 auto;
-  background-color: aquamarine;
-  height: 100vh;
-  width: 1450px;
+    margin: 0 auto;
+    background-color: aquamarine;
+    height: 100vh;
+    width: 1450px;
 }
-.container_main{
-  justify-content: space-between;
-  display: flex;
-  height: 90vh;
+
+.container_main {
+    justify-content: space-between;
+    display: flex;
 }
