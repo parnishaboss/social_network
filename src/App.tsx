@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import {Header} from './Header';
+import {Sidebar} from './Sidebar';
 
 function App() {
   return (
@@ -14,24 +16,25 @@ function App() {
   );
 }
 
-const Header = () => {
-    return (
-        <div className="Header">
-            Hello, samurai! Let's go!
-        </div>
-    )
-}
-const Sidebar = () => {
-    return (
-        <div className="Sidebar">
-            SIDESIDEBAR
-        </div>
-    )
-}
+
+
 const Content = () => {
     return (
         <div className="Content">
-            MAINMAIN
+            <div>
+                <img src="https://bogatyr.club/uploads/posts/2021-11/thumbs/1636964350_6-bogatyr-club-p-krasivii-fon-goroda-6.jpg" alt=""/>
+            </div>
+            <div>ava + discription</div>
+            <div>
+                My posts
+                <div>
+                    NEW POST
+                    <div>post1</div>
+                    <div>post2</div>
+                </div>
+            </div>
+
+
         </div>
     )
 }

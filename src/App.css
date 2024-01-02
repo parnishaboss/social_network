@@ -7,19 +7,17 @@
   background-color: red;
 }
 .Sidebar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   height: 90vh;
   width: 250px;
   background-color: cadetblue;
 }
 .Content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 1180px;
   background-color: seagreen;
+}
+.Content img {
+  max-width: 800px;
 }
 
 .container {
