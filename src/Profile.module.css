@@ -3,11 +3,44 @@
     background-color: seagreen;
 }
 
-.profile img {
-    max-width: 800px;
+.profile__img {
+    width: 100%;
+    height: 180px;
+}
+
+.profile__wrapper {
+    padding-left: 20px;
+}
+
+.profile__block {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    margin-right: 60px;
+    width: 130px;
+    max-height: 130px;
+}
+
+.discriprion {
+    display: flex;
+    flex-direction: column;
+}
+.posts__input {
+    width: 900px;
+    height: 32px;
+}
+.posts__button{
+    margin-left: 60px;
+    padding: 10px;
+    background-color: chocolate;
+}
+.posts__block{
+    margin-top: 40px;
 }
 
 .item {
     text-decoration: none;
     color: red;
 }
+
