@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    text-decoration: none;
+}
+.post__avatar{
+    width: 40px;
+}
+.post__text{
+    font-size: 20px;
+    color: red;
+    padding-left: 20px;
+}
+

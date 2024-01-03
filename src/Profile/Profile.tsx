@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css'
+import {MyPosts} from './MyPosts/MyPosts';
 
 export const Profile = () => {
     return (
@@ -20,17 +21,7 @@ export const Profile = () => {
                         <span>Web-site:none</span>
                     </div>
                 </div>
-                <div>
-                    <h3>My posts</h3>
-                    <div>
-                        <input className={s.posts__input} type="text" placeholder="Введите сообщение..."/>
-                        <button className={s.posts__button}>send</button>
-                        <div className={s.posts__block}>
-                            <div className={s.item}>post1</div>
-                            <div className={s.item}>post2</div>
-                        </div>
-                    </div>
-                </div>
+                <MyPosts/>
             </div>
 
         </div>

@@ -1,0 +1,13 @@
+
+.posts__input {
+    width: 900px;
+    height: 32px;
+}
+.posts__button{
+    margin-left: 60px;
+    padding: 10px;
+    background-color: chocolate;
+}
+.posts__block{
+    margin-top: 40px;
+}
