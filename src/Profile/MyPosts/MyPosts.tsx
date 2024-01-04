@@ -10,9 +10,9 @@ export const MyPosts = () => {
                 <input className={s.posts__input} type="text" placeholder="Введите сообщение..."/>
                 <button className={s.posts__button}>send</button>
                 <div className={s.posts__block}>
-                    <Post message='first post'/>
-                    <Post message='second post'/>
-                    <Post message='third post'/>
+                    <Post message='first post' likesCount={23}/>
+                    <Post message='second post' likesCount={123}/>
+                    <Post message='third post' likesCount={3}/>
                 </div>
             </div>
         </div>
