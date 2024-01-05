@@ -1,6 +1,7 @@
 .navbar {
     width: 250px;
     background-color: cadetblue;
+    margin-right: 20px;
 }
 
 .item__block {

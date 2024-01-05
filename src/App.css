@@ -5,7 +5,11 @@
     width: 1450px;
 }
 
-.container_main {
-    justify-content: space-between;
+.app__wrapper {
     display: flex;
+}
+
+.app__wrapper__content {
+    width: 1180px;
+    background-color: seagreen;
 }
