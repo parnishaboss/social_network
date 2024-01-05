@@ -13,8 +13,10 @@
     text-decoration: none;
 }
 
-.item.active {
-    background-color: red;
+.active {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
     color: gold;
     text-decoration: none;
 }
