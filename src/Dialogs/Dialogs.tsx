@@ -3,26 +3,29 @@ import s from './Dialogs.module.css'
 
 export const Dialogs = () => {
     return (
-        <div >
-            <h2>DIALOGS</h2>
-            <div >
-                <div >
-                    <ul>
-                        <li>Andrew</li>
-                        <li>Dmitry</li>
-                        <li>Sasha</li>
-                        <li>Sveta</li>
-                        <li>Genadii</li>
-                    </ul>
+        <div className={s.dialogs}>
+            <div className={s.dialogs__item}>
+                <div className={s.dialog}>
+                    Sasha
                 </div>
-                <div>
-                    <div>
-                        <img className={s.avatar} src="https://cdn-icons-png.flaticon.com/512/226/226772.png" alt=""/>
-                        <span>Dmitry</span>
-                    </div>
-                    <div>
-                        <span>sandk jnkj; aml;sm adalksd lk</span>
-                    </div>
+                <div className={s.dialog}>
+                    Sveta
+                </div>
+                <div className={s.dialog}>
+                    Misha
+                </div>
+                <div className={s.dialog}>
+                    Marina
+                </div>
+                <div className={s.dialog}>
+                    Karina
+                </div>
+            </div>
+            <div>
+                <div className={s.messages}>
+                    <div className={s.message}>Privet</div>
+                    <div className={s.message}>1dsfg m kdfmg  fdlkg lkdf</div>
+                    <div className={s.message}>pwewepr[ew[p   eppepepe p pe </div>
                 </div>
             </div>
         </div>

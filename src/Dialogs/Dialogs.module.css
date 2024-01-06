@@ -1,5 +1,19 @@
+.dialogs {
+    display: flex;
+    justify-content: space-evenly;
 
-.avatar {
-    width: 60px;
-    border-radius: 40px;
+}
+
+.dialogs__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 300px;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 300px;
 }
