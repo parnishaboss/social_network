@@ -11,6 +11,11 @@
     height: 300px;
 }
 
+.dialog {
+    color: white;
+    text-decoration: none;
+}
+
 .messages {
     display: flex;
     flex-direction: column;
