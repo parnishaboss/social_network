@@ -1,0 +1,14 @@
+.profile__block {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    margin-right: 60px;
+    width: 130px;
+    max-height: 130px;
+}
+
+.discriprion {
+    display: flex;
+    flex-direction: column;
+}

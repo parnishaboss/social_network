@@ -1,0 +1,21 @@
+.dialogs__wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user__logo {
+    width: 35px;
+    margin-right: 15px;
+}
+
+.dialog {
+    color: white;
+    text-decoration: none;
+}
+
+
+.active {
+    font-size: 19px;
+    color: gold;
+    text-decoration: none;
+}
