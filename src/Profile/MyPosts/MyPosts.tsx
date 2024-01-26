@@ -8,6 +8,7 @@ export const MyPosts = () => {
         {id:2,message: 'second post', likesCount: 42},
         {id:3,message: 'third post', likesCount: 12},
     ]
+    let postsElement = postsData.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <h3>My posts</h3>
@@ -15,9 +16,7 @@ export const MyPosts = () => {
                 <input className={s.posts__input} type="text" placeholder="Введите сообщение..."/>
                 <button className={s.posts__button}>send</button>
                 <div className={s.posts__block}>
-                    <Post message={postsData[0].message} likesCount={postsData[0].likesCount}/>
-                    <Post message={postsData[1].message} likesCount={postsData[1].likesCount}/>
-                    <Post message={postsData[2].message} likesCount={postsData[2].likesCount}/>
+                    {postsElement}
                 </div>
             </div>
         </div>
