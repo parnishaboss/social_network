@@ -2,8 +2,13 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {postType} from './MyPosts/Post/Post';
 
-export const Profile = () => {
+export type profileType = {
+    posts: Array<postType>
+}
+
+export const Profile = (props: profileType) => {
     return (
         <div>
             <img className={s.profile__img}
@@ -11,7 +16,7 @@ export const Profile = () => {
                  alt=""/>
             <div className={s.profile__wrapper}>
                 <ProfileInfo/>
-                <MyPosts/>
+                <MyPosts posts={props.posts}/>
             </div>
         </div>
     )
