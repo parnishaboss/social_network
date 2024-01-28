@@ -3,31 +3,29 @@ import './App.css';
 import {Header} from './Header/Header';
 import {Navbar} from './Navbar/Navbar';
 import {Profile} from './Profile/Profile';
-import {Dialogs, dialogsType, messagesType} from './Dialogs/Dialogs';
+import {Dialogs} from './Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {postType} from './Profile/MyPosts/Post/Post';
+import {stateType} from './redux/state';
 
 type appType = {
-    posts: Array<postType>
-    dialogs: Array<dialogsType>;
-    messages: Array<messagesType>;
+    state: stateType
 }
 
 
-function App(props: appType) {
+const App:React.FC<appType> = (props) => {
     return (
         <BrowserRouter>
             <div className="container">
                 <Header/>
                 <div className="app__wrapper">
-                    <Navbar/>
+                    <Navbar state={props.state.sidebarPage}/>
                     <div className="app__wrapper__content">
                         <Route path="/profile" render={() => <Profile
-                            posts={props.posts}
+                            state={props.state.profilePage}
                         />}/>
                         <Route path="/dialogs" render={() => <Dialogs
-                            dialogs={props.dialogs}
-                            messages={props.messages}/>}/>
+                            state={props.state.dialogsPage}
+                        />}/>
                     </div>
                 </div>
             </div>

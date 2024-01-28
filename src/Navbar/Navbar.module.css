@@ -21,5 +21,21 @@
     text-decoration: none;
 }
 
+.friends__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
+.friends__title {
+    color: gold;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.friends__block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 

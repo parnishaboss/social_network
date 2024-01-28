@@ -2,13 +2,12 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {postType} from './MyPosts/Post/Post';
+import {profilePageType} from '../redux/state';
 
-export type profileType = {
-    posts: Array<postType>
+type profileType = {
+    state:profilePageType
 }
-
-export const Profile = (props: profileType) => {
+export const Profile:React.FC<profileType> = (props) => {
     return (
         <div>
             <img className={s.profile__img}
@@ -16,7 +15,7 @@ export const Profile = (props: profileType) => {
                  alt=""/>
             <div className={s.profile__wrapper}>
                 <ProfileInfo/>
-                <MyPosts posts={props.posts}/>
+                <MyPosts posts={props.state.posts}/>
             </div>
         </div>
     )

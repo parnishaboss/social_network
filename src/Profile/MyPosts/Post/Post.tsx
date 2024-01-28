@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './Post.module.css'
 
-export type postType = {
-    message: string;
-    likesCount: number
+type postType = {
+    message:string
+    likesCount:number
 }
 
-export const Post = (props: postType) => {
+export const Post: React.FC<postType>  = (props) => {
     return (
         <div>
             <div className={s.item}>

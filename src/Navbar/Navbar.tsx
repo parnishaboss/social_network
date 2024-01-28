@@ -1,10 +1,16 @@
 import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink, useLocation} from 'react-router-dom';
+import {sidebarPageType} from '../redux/state';
+import {Friend} from './Friends/Friend';
 
+type navbarType = {
+    state: sidebarPageType
+}
 
-export const Navbar = () => {
+export const Navbar: React.FC<navbarType> = (props) => {
     const location = useLocation()
+    let friendElement = props.state.friend.map(f => <Friend name={f.name} logo={f.logo}/>)
     return (
         <div className={s.navbar}>
             <div className={s.item__block}>
@@ -41,6 +47,12 @@ export const Navbar = () => {
                     to="/settings">
                     Settings
                 </NavLink>
+            </div>
+            <div className={s.friends__wrapper}>
+                <div className={s.friends__title}>My friends</div>
+                <div className={s.friends__block}>
+                    {friendElement}
+                </div>
             </div>
         </div>
     )
