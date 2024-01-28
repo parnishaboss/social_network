@@ -1,3 +1,6 @@
+import {rerenderEntireTree} from '../render';
+import {v1} from 'uuid';
+
 export type messagesType = {
     id: number;
     message: string;
@@ -7,11 +10,13 @@ export type dialogsType = {
     name: string;
 }
 export type postsType = {
+    id: string
     message: string;
     likesCount: number;
 }
 export type friendType = {
-    name: string;
+    id: string
+    name: string
     logo: string
 }
 export type profilePageType = {
@@ -34,9 +39,9 @@ export type stateType = {
 export let state: stateType = {
     profilePage: {
         posts: [
-            {message: 'first post', likesCount: 21},
-            {message: 'second post', likesCount: 42},
-            {message: 'third post', likesCount: 12},
+            {id: v1(), message: 'first post', likesCount: 21},
+            {id: v1(), message: 'second post', likesCount: 42},
+            {id: v1(), message: 'third post', likesCount: 12},
         ],
     },
     dialogsPage: {
@@ -55,9 +60,19 @@ export let state: stateType = {
     },
     sidebarPage: {
         friend: [
-            {name: 'Vasya', logo: 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-9.jpg'},
-            {name: 'Katya', logo: 'https://icon-library.com/images/avatar-png-icon/avatar-png-icon-8.jpg'},
-            {name: 'Alina', logo: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-22.jpg'},
+            {id: v1(), name: 'Vasya', logo: 'https://icon-library.com/images/avatars-icon/avatars-icon-14.jpg'},
+            {id: v1(), name: 'Katya', logo: 'https://icon-library.com/images/avatar-png-icon/avatar-png-icon-8.jpg'},
+            {id: v1(), name: 'Alina', logo: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-22.jpg'},
         ]
     }
+}
+
+export let addPost = (postMessage: string) => {
+    let newPost = {
+        id:v1(),
+        message: postMessage,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }

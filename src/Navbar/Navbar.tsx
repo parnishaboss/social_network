@@ -10,7 +10,7 @@ type navbarType = {
 
 export const Navbar: React.FC<navbarType> = (props) => {
     const location = useLocation()
-    let friendElement = props.state.friend.map(f => <Friend name={f.name} logo={f.logo}/>)
+    let friendElement = props.state.friend.map(f => <Friend key={f.id} name={f.name} logo={f.logo}/>)
     return (
         <div className={s.navbar}>
             <div className={s.item__block}>
