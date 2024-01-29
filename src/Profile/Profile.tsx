@@ -5,10 +5,11 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {profilePageType} from '../redux/state';
 
 type profileType = {
-    state:profilePageType
-    addPost:(postMessage:string) => void
+    state: profilePageType
+    addPost: (postMessage: string) => void
+    changeNewText: (newText:string) => void
 }
-export const Profile:React.FC<profileType> = (props) => {
+export const Profile: React.FC<profileType> = (props) => {
     return (
         <div>
             <img className={s.profile__img}
@@ -16,7 +17,11 @@ export const Profile:React.FC<profileType> = (props) => {
                  alt=""/>
             <div className={s.profile__wrapper}>
                 <ProfileInfo/>
-                <MyPosts addPost={props.addPost} posts={props.state.posts}/>
+                <MyPosts addPost={props.addPost}
+                         posts={props.state.posts}
+                         message={props.state.newPostText}
+                         changeNewText={props.changeNewText}
+                />
             </div>
         </div>
     )

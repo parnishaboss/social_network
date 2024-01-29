@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 import {postsType} from '../../redux/state';
@@ -6,24 +6,30 @@ import {postsType} from '../../redux/state';
 
 type myPostsType = {
     posts: Array<postsType>
-    addPost:(postMessage:string) => void
+    addPost: (postMessage: string) => void
+    changeNewText: (newText: string) => void
+    message: string
 }
 
-export const MyPosts:React.FC<myPostsType> = (props) => {
-    const [taskTitle, setTaskTitle] = useState<string>('')
-    const newTask = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setTaskTitle(e.currentTarget.value)
+export const MyPosts: React.FC<myPostsType> = (props) => {
+
+    const addPost = () => {
+        props.addPost(props.message)
     }
-    let addPost = () => {
-        props.addPost(taskTitle)
-        setTaskTitle('123')
+    const postsElement = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+    const newTextChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        props.changeNewText(e.currentTarget.value)
     }
-    let postsElement = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <input onChange={newTask} className={s.posts__input} type="text" placeholder="Введите сообщение..."/>
+                <input className={s.posts__input}
+                       type="text"
+                       onChange={newTextChangeHandler}
+                    placeholder="Введите сообщение..."
+                       value={props.message}
+                />
                 <button onClick={addPost} className={s.posts__button}>send</button>
                 <div className={s.posts__block}>
                     {postsElement}

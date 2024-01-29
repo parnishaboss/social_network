@@ -9,23 +9,28 @@ import {stateType} from './redux/state';
 
 type appType = {
     state: stateType
-    addPost: (postMessage:string) => void
+    addPost: (postMessage: string) => void
+    changeNewText: (newText:string) => void
 }
-
 
 const App: React.FC<appType> = (props) => {
     return (
         <div className="container">
             <Header/>
             <div className="app__wrapper">
-                <Navbar state={props.state.sidebarPage}/>
+                <Navbar
+                    state={props.state.sidebarPage}
+                />
                 <div className="app__wrapper__content">
-                    <Route path="/profile" render={() => <Profile
-                        state={props.state.profilePage} addPost={props.addPost}
-                    />}/>
-                    <Route path="/dialogs" render={() => <Dialogs
-                        state={props.state.dialogsPage}
-                    />}/>
+                    <Route path="/profile" render={() =>
+                        <Profile state={props.state.profilePage}
+                                 addPost={props.addPost}
+                                 changeNewText={props.changeNewText}
+                        />}/>
+                    <Route path="/dialogs" render={() =>
+                        <Dialogs
+                            state={props.state.dialogsPage}
+                        />}/>
                 </div>
             </div>
         </div>
