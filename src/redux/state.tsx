@@ -2,9 +2,8 @@ import {rerenderEntireTree} from '../render';
 import {v1} from 'uuid';
 
 
-
 export type messagesType = {
-    id: number;
+    id: string;
     message: string;
 }
 export type dialogsType = {
@@ -23,9 +22,10 @@ export type friendType = {
 }
 export type profilePageType = {
     posts: Array<postsType>
-    newPostText:string
+    newPostText: string
 }
 export type dialogsPageType = {
+    newMessageText:string
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
 }
@@ -49,6 +49,7 @@ export let state: stateType = {
         ],
     },
     dialogsPage: {
+        newMessageText: '',
         dialogs: [
             {id: 1, name: 'Sasha'},
             {id: 2, name: 'Sveta'},
@@ -57,9 +58,9 @@ export let state: stateType = {
             {id: 5, name: 'Kolya'},
         ],
         messages: [
-            {id: 1, message: 'Privet'},
-            {id: 2, message: 'How are you '},
-            {id: 3, message: 'I am from London !'}
+            {id: v1(), message: 'Privet'},
+            {id: v1(), message: 'How are you '},
+            {id: v1(), message: 'I am from London !'}
         ],
     },
     sidebarPage: {
@@ -73,8 +74,8 @@ export let state: stateType = {
 
 
 export const addPost = (postMessage: string) => {
-    let newPost:postsType = {
-        id:v1(),
+    let newPost: postsType = {
+        id: v1(),
         message: postMessage,
         likesCount: 0
     }
@@ -83,7 +84,21 @@ export const addPost = (postMessage: string) => {
     state.profilePage.newPostText = ''
 }
 
-export const changeNewText = (newText:string) => {
+export const changeNewText = (newText: string) => {
     state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
+
+export const addMessage = (message:string) => {
+    let newMessage: messagesType = {
+        id: v1(),
+        message: message
+    }
+    state.dialogsPage.messages.push(newMessage)
+    rerenderEntireTree(state)
+    state.dialogsPage.newMessageText = ''
+}
+export const changeNewMessage = (newText:string) => {
+    state.dialogsPage.newMessageText = newText
     rerenderEntireTree(state)
 }

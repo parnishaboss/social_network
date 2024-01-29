@@ -11,6 +11,8 @@ type appType = {
     state: stateType
     addPost: (postMessage: string) => void
     changeNewText: (newText:string) => void
+    addMessage: (message:string) => void
+    changeNewMessage: (newText:string) => void
 }
 
 const App: React.FC<appType> = (props) => {
@@ -29,6 +31,8 @@ const App: React.FC<appType> = (props) => {
                         />}/>
                     <Route path="/dialogs" render={() =>
                         <Dialogs
+                            addMessage={props.addMessage}
+                            changeNewMessage={props.changeNewMessage}
                             state={props.state.dialogsPage}
                         />}/>
                 </div>
