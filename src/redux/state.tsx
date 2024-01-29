@@ -1,5 +1,8 @@
-import {rerenderEntireTree} from '../render';
 import {v1} from 'uuid';
+
+let rerenderEntireTree = () => {
+    console.log('state change')
+}
 
 
 export type messagesType = {
@@ -80,13 +83,13 @@ export const addPost = (postMessage: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
     state.profilePage.newPostText = ''
 }
 
 export const changeNewText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const addMessage = (message:string) => {
@@ -95,10 +98,14 @@ export const addMessage = (message:string) => {
         message: message
     }
     state.dialogsPage.messages.push(newMessage)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
     state.dialogsPage.newMessageText = ''
 }
 export const changeNewMessage = (newText:string) => {
     state.dialogsPage.newMessageText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
 }
