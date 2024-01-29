@@ -1,10 +1,5 @@
 import {v1} from 'uuid';
 
-let rerenderEntireTree = () => {
-    console.log('state change')
-}
-
-
 export type messagesType = {
     id: string;
     message: string;
@@ -28,7 +23,7 @@ export type profilePageType = {
     newPostText: string
 }
 export type dialogsPageType = {
-    newMessageText:string
+    newMessageText: string
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
 }
@@ -40,72 +35,107 @@ export type stateType = {
     dialogsPage: dialogsPageType
     sidebarPage: sidebarPageType
 }
+export type storeType = {
+    _state: stateType
+    addPost: (postMessage: string) => void
+    changeNewText:(newText: string) => void
+    addMessage:(message: string) => void
+    changeNewMessage:(newText: string) => void
+    subscribe:(observer: () => void) => void
+    getState:() => stateType
+    callSubscriber:() => void
+}
 
-
-export let state: stateType = {
-    profilePage: {
-        newPostText: '',
-        posts: [
-            {id: v1(), message: 'first post', likesCount: 21},
-            {id: v1(), message: 'second post', likesCount: 42},
-            {id: v1(), message: 'third post', likesCount: 12},
-        ],
+export let store:storeType = {
+    _state: {
+        profilePage: {
+            newPostText: '',
+            posts: [
+                {id: v1(), message: 'first post', likesCount: 21},
+                {id: v1(), message: 'second post', likesCount: 42},
+                {id: v1(), message: 'third post', likesCount: 12},
+            ],
+        },
+        dialogsPage: {
+            newMessageText: '',
+            dialogs: [
+                {id: 1, name: 'Sasha'},
+                {id: 2, name: 'Sveta'},
+                {id: 3, name: 'Misha'},
+                {id: 4, name: 'Vasya'},
+                {id: 5, name: 'Kolya'},
+            ],
+            messages: [
+                {id: v1(), message: 'Privet'},
+                {id: v1(), message: 'How are you '},
+                {id: v1(), message: 'I am from London !'}
+            ],
+        },
+        sidebarPage: {
+            friend: [
+                {id: v1(), name: 'Vasya', logo: 'https://icon-library.com/images/avatars-icon/avatars-icon-14.jpg'},
+                {
+                    id: v1(),
+                    name: 'Katya',
+                    logo: 'https://icon-library.com/images/avatar-png-icon/avatar-png-icon-8.jpg'
+                },
+                {
+                    id: v1(),
+                    name: 'Alina',
+                    logo: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-22.jpg'
+                },
+            ]
+        }
     },
-    dialogsPage: {
-        newMessageText: '',
-        dialogs: [
-            {id: 1, name: 'Sasha'},
-            {id: 2, name: 'Sveta'},
-            {id: 3, name: 'Misha'},
-            {id: 4, name: 'Vasya'},
-            {id: 5, name: 'Kolya'},
-        ],
-        messages: [
-            {id: v1(), message: 'Privet'},
-            {id: v1(), message: 'How are you '},
-            {id: v1(), message: 'I am from London !'}
-        ],
+    getState() {
+        return this._state
     },
-    sidebarPage: {
-        friend: [
-            {id: v1(), name: 'Vasya', logo: 'https://icon-library.com/images/avatars-icon/avatars-icon-14.jpg'},
-            {id: v1(), name: 'Katya', logo: 'https://icon-library.com/images/avatar-png-icon/avatar-png-icon-8.jpg'},
-            {id: v1(), name: 'Alina', logo: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-22.jpg'},
-        ]
+    callSubscriber() {
+        console.log('state change')
+    },
+    addPost(postMessage: string) {
+        let newPost: postsType = {
+            id: v1(),
+            message: postMessage,
+            likesCount: 0
+        }
+        this._state.profilePage.posts.push(newPost)
+        this.callSubscriber()
+        this._state.profilePage.newPostText = ''
+    },
+    changeNewText(newText: string) {
+        this._state.profilePage.newPostText = newText
+        this.callSubscriber()
+    },
+    addMessage(message: string) {
+        let newMessage: messagesType = {
+            id: v1(),
+            message: message
+        }
+        this._state.dialogsPage.messages.push(newMessage)
+        this.callSubscriber()
+        this._state.dialogsPage.newMessageText = ''
+    },
+    changeNewMessage(newText: string) {
+        this._state.dialogsPage.newMessageText = newText
+        this.callSubscriber()
+    },
+    subscribe(observer) {
+        this.callSubscriber = observer
     }
 }
 
 
-export const addPost = (postMessage: string) => {
-    let newPost: postsType = {
-        id: v1(),
-        message: postMessage,
-        likesCount: 0
-    }
-    state.profilePage.posts.push(newPost)
-    rerenderEntireTree()
-    state.profilePage.newPostText = ''
-}
 
-export const changeNewText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerenderEntireTree()
-}
 
-export const addMessage = (message:string) => {
-    let newMessage: messagesType = {
-        id: v1(),
-        message: message
-    }
-    state.dialogsPage.messages.push(newMessage)
-    rerenderEntireTree()
-    state.dialogsPage.newMessageText = ''
-}
-export const changeNewMessage = (newText:string) => {
-    state.dialogsPage.newMessageText = newText
-    rerenderEntireTree()
-}
 
-export const subscribe = (observer: () => void) => {
-    rerenderEntireTree = observer
-}
+
+
+
+
+
+
+
+
+
+
