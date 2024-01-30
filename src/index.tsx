@@ -10,11 +10,6 @@ const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App store={store}
-                // state={store.getState()}
-                //  addPost={store.addPost}
-                //  changeNewText={store.changeNewText}
-                //  addMessage={store.addMessage}
-                //  changeNewMessage={store.changeNewMessage}
             />
         </BrowserRouter>, document.getElementById('root')
     );

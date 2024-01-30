@@ -2,22 +2,22 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Message';
-import {dialogsPageType} from '../redux/state';
+import {actionTypes, dialogsPageType} from '../redux/state';
 
 type dialogType = {
     state: dialogsPageType
-    addMessage: (message:string) => void
-    changeNewMessage: (newText:string) => void
+    dispatch: (action: actionTypes) => void
 }
 
 export const Dialogs: React.FC<dialogType> = (props) => {
     let dialogsElement = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
     let messagesElement = props.state.messages.map(m => <Message message={m.message}/>)
     const addMessage = () => {
-        props.addMessage(props.state.newMessageText)
+        props.dispatch({type: 'ADD-MESSAGE', message: props.state.newMessageText})
     }
-    const newMessageTextHandler = (e:ChangeEvent<HTMLInputElement>) => {
-        props.changeNewMessage(e.currentTarget.value)
+    const newMessageTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.currentTarget.value
+        props.dispatch({type: 'CHANGE-NEW-MESSAGE', newText: text})
     }
     return (
         <div className={s.dialogs}>
@@ -30,8 +30,8 @@ export const Dialogs: React.FC<dialogType> = (props) => {
                 </div>
                 <input onChange={newMessageTextHandler}
                        type="text"
-                       placeholder='Ваше сообщение..'
-                        value={props.state.newMessageText}
+                       placeholder="Ваше сообщение.."
+                       value={props.state.newMessageText}
                 />
                 <button onClick={addMessage}>click me</button>
             </div>
