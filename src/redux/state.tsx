@@ -1,5 +1,4 @@
 import {v1} from 'uuid';
-import {message} from 'antd';
 
 export type messagesType = {
     id: string;
@@ -52,12 +51,12 @@ type changeNewTextActionType = {
     newText: string
 }
 type addMessageActionType = {
-    type: 'ADD-MESSAGE'
+    type: 'SEND-MESSAGE'
     message: string
 }
 type changeNewMessageActionType = {
-    type: 'CHANGE-NEW-MESSAGE'
-    newText: string
+    type: 'UPDATE-NEW-MESSAGE-BODY'
+    body: string
 }
 
 export type actionTypes =
@@ -129,7 +128,7 @@ export let store: storeType = {
         } else if (action.type === 'CHANGE-NEW-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === 'SEND-MESSAGE') {
             let newMessage: messagesType = {
                 id: v1(),
                 message: action.message
@@ -137,8 +136,8 @@ export let store: storeType = {
             this._state.dialogsPage.messages.push(newMessage)
             this._callSubscriber()
             this._state.dialogsPage.newMessageText = ''
-        } else if (action.type === 'CHANGE-NEW-MESSAGE') {
-            this._state.dialogsPage.newMessageText = action.newText
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.dialogsPage.newMessageText = action.body
             this._callSubscriber()
         }
     },
@@ -153,17 +152,16 @@ export const addPostAC = (postMessage: string): addPostActionType => {
 export const newTextChangeHandlerAC = (text: string): changeNewTextActionType => {
     return {type: 'CHANGE-NEW-TEXT', newText: text}
 }
-
-export const addMessageAC = (message: string): addMessageActionType => {
+export const sendMessageAC = (message: string): addMessageActionType => {
     return {
-        type: 'ADD-MESSAGE',
+        type: 'SEND-MESSAGE',
         message: message
     }
 }
-export const changeNewMessageAC = (newText: string): changeNewMessageActionType => {
+export const updateNewMessageBodyAC = (newText: string): changeNewMessageActionType => {
     return {
-        type: 'CHANGE-NEW-MESSAGE',
-        newText: newText
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        body: newText
     }
 }
 
