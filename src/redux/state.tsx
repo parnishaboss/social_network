@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {message} from 'antd';
 
 export type messagesType = {
     id: string;
@@ -37,34 +38,35 @@ export type stateType = {
 }
 export type storeType = {
     _state: stateType
-    subscribe:(observer: () => void) => void
-    getState:() => stateType
-    _callSubscriber:() => void
-    dispatch:(action:actionTypes) => void
+    subscribe: (observer: () => void) => void
+    getState: () => stateType
+    _callSubscriber: () => void
+    dispatch: (action: actionTypes) => void
 }
-
 type addPostActionType = {
     type: 'ADD-POST'
-    postMessage:string
+    postMessage: string
 }
 type changeNewTextActionType = {
     type: 'CHANGE-NEW-TEXT'
-    newText:string
+    newText: string
 }
 type addMessageActionType = {
     type: 'ADD-MESSAGE'
-    message:string
+    message: string
 }
 type changeNewMessageActionType = {
     type: 'CHANGE-NEW-MESSAGE'
-    newText:string
+    newText: string
 }
 
+export type actionTypes =
+    addPostActionType
+    | changeNewTextActionType
+    | addMessageActionType
+    | changeNewMessageActionType
 
-
-export type actionTypes = addPostActionType | changeNewTextActionType | addMessageActionType | changeNewMessageActionType
-
-export let store:storeType = {
+export let store: storeType = {
     _state: {
         profilePage: {
             newPostText: '',
@@ -124,12 +126,10 @@ export let store:storeType = {
             this._state.profilePage.posts.push(newPost)
             this._callSubscriber()
             this._state.profilePage.newPostText = ''
-        }
-        else if (action.type === 'CHANGE-NEW-TEXT') {
+        } else if (action.type === 'CHANGE-NEW-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
-        }
-        else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === 'ADD-MESSAGE') {
             let newMessage: messagesType = {
                 id: v1(),
                 message: action.message
@@ -137,16 +137,35 @@ export let store:storeType = {
             this._state.dialogsPage.messages.push(newMessage)
             this._callSubscriber()
             this._state.dialogsPage.newMessageText = ''
-        }
-        else if (action.type === 'CHANGE-NEW-MESSAGE') {
+        } else if (action.type === 'CHANGE-NEW-MESSAGE') {
             this._state.dialogsPage.newMessageText = action.newText
             this._callSubscriber()
         }
     },
 }
 
+export const addPostAC = (postMessage: string): addPostActionType => {
+    return {
+        type: 'ADD-POST',
+        postMessage: postMessage
+    }
+}
+export const newTextChangeHandlerAC = (text: string): changeNewTextActionType => {
+    return {type: 'CHANGE-NEW-TEXT', newText: text}
+}
 
-
+export const addMessageAC = (message: string): addMessageActionType => {
+    return {
+        type: 'ADD-MESSAGE',
+        message: message
+    }
+}
+export const changeNewMessageAC = (newText: string): changeNewMessageActionType => {
+    return {
+        type: 'CHANGE-NEW-MESSAGE',
+        newText: newText
+    }
+}
 
 
 
