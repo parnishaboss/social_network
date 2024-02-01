@@ -1,4 +1,7 @@
 import {v1} from 'uuid';
+import profileRedecer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+import profileReducer from './profile-reducer';
 
 export type messagesType = {
     id: string;
@@ -42,19 +45,19 @@ export type storeType = {
     _callSubscriber: () => void
     dispatch: (action: actionTypes) => void
 }
-type addPostActionType = {
+export type addPostActionType = {
     type: 'ADD-POST'
     postMessage: string
 }
-type changeNewTextActionType = {
+export type changeNewTextActionType = {
     type: 'CHANGE-NEW-TEXT'
     newText: string
 }
-type addMessageActionType = {
+export type addMessageActionType = {
     type: 'SEND-MESSAGE'
     message: string
 }
-type changeNewMessageActionType = {
+export type changeNewMessageActionType = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
     body: string
 }
@@ -116,6 +119,11 @@ export let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action) {
+
+
+        // this._state.profilePage =  profileReducer(this._state.profilePage, action)
+        // this._state.dialogsPage =  dialogsReducer(this._state.dialogsPage, action)
+
         if (action.type === 'ADD-POST') {
             let newPost: postsType = {
                 id: v1(),
@@ -140,6 +148,7 @@ export let store: storeType = {
             this._state.dialogsPage.newMessageText = action.body
             this._callSubscriber()
         }
+
     },
 }
 
